@@ -2,13 +2,13 @@ from psutil import virtual_memory
 from argparse import ArgumentParser
 
 parser = ArgumentParser()
-parser.add_argument("-w", "--warning", help="RAM availability less than this threshold will trigger a warning (percent) e.g. -w 80", type=float)
-parser.add_argument("-c", "--critical", help="RAM availability less than this threshold will trigger a CRITICAL warning (percent) e.g. -c 90", type=float)
+parser.add_argument("-w", "--warning", dest="warning", help="RAM availability less than this threshold will trigger a warning (percent) e.g. -w 80", type=float)
+parser.add_argument("-c", "--critical", dest="critical", help="RAM availability less than this threshold will trigger a CRITICAL warning (percent) e.g. -c 90", type=float)
 args = parser.parse_args()
 
 
-warning_threshold = 0.2 if not args.w else args.w
-critical_threshold = 0.1 if not args.c else args.c
+warning_threshold = 0.2 if not args.warning else args.warning
+critical_threshold = 0.1 if not args.critical else args.critical
 
 exit_code = 3
 
